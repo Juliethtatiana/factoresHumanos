@@ -1,0 +1,105 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 fadeInDown">
+        <div class="container">
+            <a class="navbar-brand" asp-page="/Empleado/Index1">
+                <img src="../../assets/img/logopequeño.png" alt="" height="60">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item dropdown">
+                        <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Inventario
+                          </button>
+                          <ul class="dropdown-menu fadeIn-lessD">
+                            <li><a class="dropdown-item" href="/inv">Lista de inventarios</a></li>
+                            <li><a class="dropdown-item" href="/regInv">Registrar Inventario</a></li>
+                            
+                          </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ventas
+                          </button>
+                          <ul class="dropdown-menu fadeIn-lessD">
+                            <li><a class="dropdown-item" href="/vent">Lista de Ventas</a></li>
+                            <li><a class="dropdown-item" href="/regVent">Registrar Venta</a></li>
+                            
+                          </ul>
+                    <li class="nav-item">
+                        <a class="nav-link " asp-area="" href="#">Cerrar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div>
+    
+<div class="d-flex justify-content-between m-5 mb-0 fadeIn">
+    <h2 class="">Registrar Venta</h2>
+</div>
+
+<div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
+    <form method="post">
+        <div asp-validation-sumary="ModelOnly">
+            <div class="container" style="padding:30px;">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="venta.Fecha">Fecha</label>
+                            <input asp-for="venta.Fecha" type="date" class="form-control" />
+                            <span asp-validation-for="venta.Fecha" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label asp-for="venta.Cantidad">Cantidad</label>
+                                <input asp-for="venta.Cantidad" class="form-control" />
+                                <span asp-validation-for="venta.Cantidad" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label asp-for="venta.NombreCliente">Nombre cliente</label>
+                                <input asp-for="venta.NombreCliente" class="form-control" />
+                                <span asp-validation-for="venta.NombreCliente" class="text-danger"></span>
+                            </div>
+                            <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="row">
+                            <div class="col">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="@item.IdProducto">Funda celular</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="submit" value="Registrar" class="btn btn-primary form-control" />
+                            </div>
+                            <div class="col-sm-4">
+                                <a type="button" href="/vent" class="btn btn-inv">Volver a la lista</a>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

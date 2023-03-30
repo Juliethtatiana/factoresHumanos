@@ -3,10 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { InventarioListComponent } from './inventario-list/inventario-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrarInventarioComponent } from './registrar-inventario/registrar-inventario.component';
+import { RegistrarVentaComponent } from './registrar-venta/registrar-venta.component';
+import { VentasListComponent } from './ventas-list/ventas-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InventarioListComponent,
+    LoginComponent,
+    RegistrarInventarioComponent,
+    RegistrarVentaComponent,
+    VentasListComponent
   ],
   imports: [
     BrowserModule,
