@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrarInventarioComponent } from './registrar-inventario/registrar-inventario.component';
 import { RegistrarVentaComponent } from './registrar-venta/registrar-venta.component';
 import { VentasListComponent } from './ventas-list/ventas-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,12 @@ import { VentasListComponent } from './ventas-list/ventas-list.component';
     RegistrarInventarioComponent,
     RegistrarVentaComponent,
     VentasListComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

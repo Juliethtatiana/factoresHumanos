@@ -60,42 +60,22 @@
 <table class="tabla table table-hover table-responsive">
 <thead class="theadblue">
     <tr>
-        <th>#</th>
-        <th>Fecha</th>
-        <th>Cantidad</th>
-        <th>Producto</th>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Fecha Creación</th>
+        <th>Propietario</th>
     </tr>
 </thead>
 <tbody>
-    <tr>
-        <td>123</td>
-        <td>02/03/2023</td>
-        <td>30</td>
-        <td>Fundas para celular Xioami mi A2</td>
-    </tr>
-    <tr>
-        <td>123</td>
-        <td>02/03/2023</td>
-        <td>30</td>
-        <td>Fundas para celular Xioami mi A2</td>
-    </tr>
-    <tr>
-        <td>123</td>
-        <td>02/03/2023</td>
-        <td>30</td>
-        <td>Fundas para celular Xioami mi A2</td>
-    </tr>
-    <tr>
-        <td>123</td>
-        <td>02/03/2023</td>
-        <td>30</td>
-        <td>Fundas para celular Xioami mi A2</td>
-    </tr>
-    <tr>
-        <td>123</td>
-        <td>02/03/2023</td>
-        <td>30</td>
-        <td>Fundas para celular Xioami mi A2</td>
+    <tr *ngFor="let inventario of listaInventarios">
+        <td>{{inventario.idinventario}}</td>
+        <td>{{inventario.nombre}}</td>
+        <td>{{inventario.descripcion}}</td>
+        <td>{{inventario.fechaCreacion | date:'shortDate' }}</td>
+        <td>{{inventario.creador.nombre}}</td>
+        
+
     </tr>
 </tbody>
 
