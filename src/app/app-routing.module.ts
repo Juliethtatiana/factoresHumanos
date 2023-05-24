@@ -5,6 +5,7 @@ import { InventarioListComponent } from './inventario-list/inventario-list.compo
 import { RegistrarInventarioComponent } from './registrar-inventario/registrar-inventario.component';
 import { RegistrarVentaComponent } from './registrar-venta/registrar-venta.component';
 import { VentasListComponent } from './ventas-list/ventas-list.component';
+import { ProductoComponent} from './producto/producto.component';
 
 
 const routes: Routes = [ {
@@ -14,7 +15,8 @@ const routes: Routes = [ {
 { path: 'inv', component: InventarioListComponent },
 { path: 'regInv', component: RegistrarInventarioComponent },
 { path: 'regVent', component: RegistrarVentaComponent },
-{ path: 'vent', component: VentasListComponent },];
+{ path: 'vent', component: VentasListComponent },
+{ path: 'prod', component: ProductoComponent },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -5,16 +5,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class InventarioService {
+export class LoginService {
 
-  readonly api="http://localhost:3000/inventario"
+  readonly api="http://localhost:3000/usuario"
 
   constructor(private http: HttpClient) { 
   }
 
-  list():Observable<any>{
+  signin():Observable<any>{
     return this.http.get<any>(this.api);
   }
-
- 
 }

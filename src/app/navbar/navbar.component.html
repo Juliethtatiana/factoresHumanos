@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 fadeInDown">
+    <div class="container">
+        <a class="navbar-brand" asp-page="/Empleado/Index1">
+            <img src="../../assets/img/logopequeño.png" alt="" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item dropdown">
+                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Inventario
+                      </button>
+                      <ul class="dropdown-menu fadeIn-lessD">
+                        <li><a class="dropdown-item" href="/inv">Mi inventario</a></li>
+                        <li><a class="dropdown-item" href="/regInv">Registrar Productos al inv</a></li>
+                        
+                      </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ventas
+                      </button>
+                      <ul class="dropdown-menu fadeIn-lessD">
+                        <li><a class="dropdown-item" href="/vent">Lista de Ventas</a></li>
+                        <li><a class="dropdown-item" href="/regVent">Registrar Venta</a></li>
+                        
+                      </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Producto
+                      </button>
+                      <ul class="dropdown-menu fadeIn-lessD">
+                        <li><a class="dropdown-item" href="/prod">CrearProd</a></li>
+                       
+                        
+                      </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" href="#">Cerrar Sesion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

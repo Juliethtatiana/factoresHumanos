@@ -9,6 +9,10 @@ import { RegistrarInventarioComponent } from './registrar-inventario/registrar-i
 import { RegistrarVentaComponent } from './registrar-venta/registrar-venta.component';
 import { VentasListComponent } from './ventas-list/ventas-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductoComponent } from './producto/producto.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +21,17 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegistrarInventarioComponent,
     RegistrarVentaComponent,
-    VentasListComponent
+    VentasListComponent,
+    ProductoComponent,
+    NavbarComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

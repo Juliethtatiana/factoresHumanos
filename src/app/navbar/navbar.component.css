@@ -1,0 +1,7 @@
+nav{
+    background-color: var(--primary-color);
+    box-shadow: 0 .4rem .5rem rgba(0,0,0,.15)!important;
+  }
+  .nav-item{
+    margin:0 0.5em;
+  }
