@@ -9,13 +9,14 @@
 </div>
 
 <div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
-    <form method="POST"  >
+    
+    <form [formGroup]="invProdForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group mt-3">
             <div class="row">
                 <div class="col">
                     <label asp-for="venta.Fecha">Producto</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" formControlName="productoIdproducto">
                         <option *ngFor="let producto of listaProductos" value="{{producto.idproducto}}">{{producto.nombreProducto}}</option>
                     </select>
                 </div>
@@ -25,9 +26,9 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-12">
-                    <label asp-for="inventario.Cantidad">Cantidad</label>
-                    <input asp-for="inventario.Cantidad" class="form-control" />
-                    <span asp-validation-for="inventario.Cantidad" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                    <label >Cantidad</label>
+                    <input class="form-control" type="number" formControlName="cantidad_inv" />
+                    <span  class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                 </div>
 
             </div>
@@ -38,7 +39,7 @@
         <div class="form-group mt-3">
             <div class="row">
                 <div class="col-sm-3">
-                    <button type="submit" class="btn btn-primary form-control">Registrar Producto</button>
+                    <input type="submit" value="Registrar Producto" class="btn btn-primary form-control" />
 
                 </div>
                 <div class="col-sm-4">

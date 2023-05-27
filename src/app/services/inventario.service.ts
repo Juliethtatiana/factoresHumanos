@@ -28,7 +28,7 @@ export class InventarioService {
 
   createInvProd(data: invProdData){
     data.inventarioIdinventario=5
-    return this.http.post(this.apiInvProd,data)
+    return this.http.post<any>(this.apiInvProd,data)
   }
 
  
