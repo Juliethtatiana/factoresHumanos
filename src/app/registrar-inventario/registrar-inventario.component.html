@@ -5,18 +5,20 @@
 <div>
     
 <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
-    <h2 class="">Registrar Inventario</h2>
+    <h2 class="">Registrar Producto a inventario</h2>
 </div>
 
 <div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
     <form method="POST"  >
 
-        <div class="row">
-
-            <div class="col">
-                <label asp-for="inventario.Fecha">Fecha</label>
-                <input asp-for="inventario.Fecha" type="date" class="form-control" />
-                <span asp-validation-for="inventario.Fecha" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+        <div class="form-group mt-3">
+            <div class="row">
+                <div class="col">
+                    <label asp-for="venta.Fecha">Producto</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option *ngFor="let producto of listaProductos" value="{{producto.idproducto}}">{{producto.nombreProducto}}</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -31,21 +33,13 @@
             </div>
         </div>
 
-        <div class="form-group mt-3">
-            <div class="row">
-                <div class="col">
-                    <label asp-for="venta.Fecha">Producto</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="@item.IdProducto">Funda celular</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="form-group mt-3">
             <div class="row">
-                <div class="col-sm-2">
-                    <input type="submit" value="Registrar" class="btn btn-primary form-control" />
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-primary form-control">Registrar Producto</button>
+
                 </div>
                 <div class="col-sm-4">
                    <a type="button" href="/inv" class="btn btn-inv">Volver a la lista</a>              </div>

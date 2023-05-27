@@ -7,16 +7,20 @@ import {InventarioService} from 'src/app/services/inventario.service'
   styleUrls: ['./inventario-list.component.css']
 })
 export class InventarioListComponent implements OnInit {
-
-  listaInventarios:any
+  inventarioInfo:any
+  listaProductos:any
 
   constructor(private inventarioService: InventarioService){
 
   }
   ngOnInit() {
-    this.inventarioService.list().subscribe((response)=>{
+    this.inventarioService.getInventory(5).subscribe((response)=>{
       console.log(response)
-      this.listaInventarios=response;
+      this.inventarioInfo=response;
+    })
+    this.inventarioService.getProducts(5).subscribe((response)=>{
+      console.log(response)
+      this.listaProductos=response;
     })
   }
 

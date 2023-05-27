@@ -5,8 +5,8 @@
 <div>
     
 <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
-    <h2 class="">Lista de Inventario</h2>
-    <button type="button" class="btn btn-inv p-2 ">Registrar Inventario</button>
+    <h2 class="">Mi Inventario</h2>
+    <a type="button" class="btn btn-inv p-2 "  href="/regInv" >Registrar Producto</a>
 </div>
 
 <div class="card shadow p-3 mb-5 bg-white rounded fadeIn">
@@ -27,17 +27,17 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Descripcion</th>
-        <th>Fecha Creación</th>
-        <th>Propietario</th>
+        <th>Precio Unitario</th>
+        <th>Cantidad</th>
     </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let inventario of listaInventarios">
-        <td>{{inventario.idinventario}}</td>
-        <td>{{inventario.nombre}}</td>
-        <td>{{inventario.descripcion}}</td>
-        <td>{{inventario.fechaCreacion | date:'shortDate' }}</td>
-        <td>{{inventario.creador.nombre}}</td>
+    <tr *ngFor="let item of listaProductos">
+        <td>{{item.idInvProd}}</td>
+        <td>{{item.producto.nombreProducto}}</td>
+        <td>{{item.producto.descripcion}}</td>
+        <td>{{item.producto.precioUnitario }}</td>
+        <td>{{item.cantidad}}</td>
         
 
     </tr>
