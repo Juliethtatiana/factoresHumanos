@@ -13,6 +13,7 @@ import { ProductoComponent } from './producto/producto.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AllInventariosComponent } from './all-inventarios/all-inventarios.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegistrarVentaComponent,
     VentasListComponent,
     ProductoComponent,
-    NavbarComponent
+    NavbarComponent,
+    AllInventariosComponent
 
   ],
   imports: [

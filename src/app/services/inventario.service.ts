@@ -19,7 +19,7 @@ export class InventarioService {
   }
 
   getInventory(idInventario:number):Observable<any>{
-    return this.http.get<any>(this.api+idInventario)
+    return this.http.get<any>(this.api+ "/"+idInventario)
   }
 
   getProducts(idInventario:number): Observable<any>{

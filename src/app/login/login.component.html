@@ -21,12 +21,12 @@
                         <h5>Stockify</h5>
                     </div>
                     <div class="formulario">
-                        <form  method="post">
-                            <input type="text"  class="fadeIn second" name="user" placeholder="user" (click)="speak('usuario')">
-                            <input type="password" class="fadeIn third" name="password" placeholder="password" (click)="speak('conraseña')">
-                           
+                        <form  [formGroup]="userForm" (ngSubmit)="main()">
+                            <input type="text"  class="fadeIn second"  formControlName="username" placeholder="user" (click)="speak('usuario')">
+                            <input type="password" class="fadeIn third"  formControlName="password" placeholder="password" (click)="speak('conraseña')">
+                            <button type="submit" class="fadeIn fourth" > Ingresar</button>
                         </form>
-                        <button (click)="main()" class="fadeIn fourth" > Ingresar</button>
+                        
     
 
                     </div>
