@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductoService} from 'src/app/services/producto.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {productoData} from 'src/app/types/producto';
 
 @Component({
   selector: 'app-registrar-venta',
@@ -41,6 +42,7 @@ export class RegistrarVentaComponent implements OnInit{
     const botonPresionado = event.submitter.name;
     
     if (botonPresionado === 'add') {
+            
       const nuevaFila = {
         productoIdproducto: this.addProdForm.value.productoIdproducto,
         nameproducto:this.addProdForm.value.nameproducto,
@@ -48,7 +50,12 @@ export class RegistrarVentaComponent implements OnInit{
         cantidad:this.addProdForm.value.cantidad,
         total:this.addProdForm.value.total
       };
-      console.log(nuevaFila);
+
+      
+      const producto = this.listaProductos.filter((producto: productoData) => {
+        return producto.idproducto === this.addProdForm.value.productoIdproducto;
+      });
+      
       this.datosTabla.push(nuevaFila);
 
     } else if (botonPresionado === 'boton2') {

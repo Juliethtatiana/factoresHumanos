@@ -1,5 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import {LoginService} from "src/app/services/login.service";
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,12 +12,39 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   speech:any
-  constructor(private router: Router) {   
+  userForm:FormGroup
+  
+  constructor(private router: Router,
+    private loginService:LoginService,
+    private formBuilder:FormBuilder) {   
     localStorage.clear() 
     this.speech= new SpeechSynthesisUtterance();
+    this.userForm = this.formBuilder.group({
+      username:"",
+      password:""
+    });
   }
     main(){
-        this.router.navigate(['/inv']);
+      
+      const usr={
+        username:this.userForm.value.username,
+        password:this.userForm.value.password
+      }
+      console.log(usr)
+        this.loginService.signin(usr).subscribe((response)=>{
+          if(response.statusCode === 200){
+            window.localStorage.setItem("UserData", JSON.stringify(response.user))
+            this.router.navigate(['/inv']);
+          }
+        },(error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            Swal.fire('Error', error.error.message, 'error');
+          } else {
+            // Handle other errors
+            Swal.fire('Error', error.message, 'error');
+          }
+        })
+       
     }
 
    disableanimations(){
