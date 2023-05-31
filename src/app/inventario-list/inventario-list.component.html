@@ -33,10 +33,42 @@
              
      
          </tr>
+
      </tbody>
      
      </table>
      </div>
+
+     <div >
+        <h2 class="">Devoluciones</h2>
+     </div>
+
+     <div class="card shadow p-3 mb-5 bg-white rounded fadeIn">
+        <table class="tabla table table-hover table-responsive" >
+        <thead class="theadblue">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad en stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listaDevoluciones">
+                <td>{{item.idInvProd}}</td>
+                <td>{{item.producto.nombreProducto}}</td>
+                <td>{{item.producto.descripcion}}</td>
+                <td>{{item.producto.precioUnitario }}</td>
+                <td>{{item.cantidad_inv}}</td>
+                
+        
+            </tr>
+            
+        </tbody>
+        
+        </table>
+        </div>
      
      </div>
 </div>
