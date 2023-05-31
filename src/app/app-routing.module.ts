@@ -6,6 +6,7 @@ import { RegistrarInventarioComponent } from './registrar-inventario/registrar-i
 import { RegistrarVentaComponent } from './registrar-venta/registrar-venta.component';
 import { VentasListComponent } from './ventas-list/ventas-list.component';
 import { ProductoComponent} from './producto/producto.component';
+import {NotAuthComponent} from './not-auth/not-auth.component'
 
 
 const routes: Routes = [ {
@@ -16,7 +17,8 @@ const routes: Routes = [ {
 { path: 'regInv', component: RegistrarInventarioComponent },
 { path: 'regVent', component: RegistrarVentaComponent },
 { path: 'vent', component: VentasListComponent },
-{ path: 'prod', component: ProductoComponent },];
+{ path: 'prod', component: ProductoComponent },
+{ path: 'notAuth', component: NotAuthComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
