@@ -12,13 +12,15 @@ import Swal from 'sweetalert2';
 export class ProductoComponent implements OnInit {
   
   listaProveedores: any
-
   productForm:FormGroup
+  authenticated:boolean
+  user:any
 
   constructor(
     private proveedorService: ProveedorService,
     private productoService:ProductoService,
     private formBuilder:FormBuilder){
+      
       this.productForm = this.formBuilder.group({
         nombreProducto:'',
         descripcion:'',
@@ -26,12 +28,18 @@ export class ProductoComponent implements OnInit {
         proveedorIdProveedor:0
       });
 
+      this.authenticated=false
   }
   ngOnInit(): void {
-    this.proveedorService.list().subscribe((response)=>{
-      this.listaProveedores=response
-    })
+    const userData=window.localStorage.getItem("UserData");
     
+    if(userData){
+      this.authenticated=true
+      this.user=JSON.parse(userData)
+      this.proveedorService.list().subscribe((response)=>{
+        this.listaProveedores=response
+      })
+    }     
   }
 
   onSubmit():void{

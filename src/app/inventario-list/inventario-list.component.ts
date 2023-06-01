@@ -12,7 +12,7 @@ export class InventarioListComponent implements OnInit {
   listaDevoluciones:any
   authenticated:boolean
   user:any
-  administrator:boolean
+  administrator:boolean 
 
   constructor(private inventarioService: InventarioService){
     this.authenticated=false
@@ -54,8 +54,6 @@ export class InventarioListComponent implements OnInit {
         
 
       }
-
-      
     }else{
 
     }

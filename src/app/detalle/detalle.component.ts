@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleComponent implements OnInit {
 
- 
+   
   nombreCliente: string | undefined;
   fechaHoy: string | undefined;
   costoTotal: number | undefined;
@@ -20,6 +20,8 @@ export class DetalleComponent implements OnInit {
   listaProductos: any
   idVenta:number
   ventaInfo:any
+  authenticated:boolean
+  user:any
 
   constructor(
       private productoService: ProductoService,
@@ -27,11 +29,15 @@ export class DetalleComponent implements OnInit {
       private route: ActivatedRoute,
       ){
      this.idVenta= this.route.snapshot.params['id'];
-
+     this.authenticated=false
   }
     
   ngOnInit(): void {
-     this.ventaService.getInfo(Number(this.idVenta)).subscribe((response)=>{
+    const userData=window.localStorage.getItem("UserData");
+
+    if(userData){
+      this.authenticated=true
+      this.ventaService.getInfo(Number(this.idVenta)).subscribe((response)=>{
         if(response){
           this.ventaInfo=response
           this.ventaService.getProd(this.ventaInfo.idventa).subscribe((response)=>{
@@ -45,5 +51,7 @@ export class DetalleComponent implements OnInit {
       this.factura = 1
       this.fechaHoy = new Date().toISOString().split('T')[0];
       this.costoTotal = 1000;
+    }
+     
   }
 }

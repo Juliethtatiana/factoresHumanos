@@ -32,14 +32,14 @@ export class RegistrarInventarioComponent implements OnInit {
         productoIdproducto:0
       });
 
-    }
+    } 
     
   ngOnInit(): void {
     const userData=window.localStorage.getItem("UserData");
     if(userData){
       this.authenticated=true
       this.user=JSON.parse(userData)
-    this.productoService.list().subscribe((response)=>{
+      this.productoService.list().subscribe((response)=>{
       this.listaProductos=response
     })
     this.inventarioService.getInventorybyUser(Number(this.user.idusuario)).subscribe((response)=>{
@@ -67,8 +67,6 @@ export class RegistrarInventarioComponent implements OnInit {
         }else{
           Swal.fire('listo', 'producto registrado satisfactoriamente', 'success');
         }
-        
-      
      
     })
   }

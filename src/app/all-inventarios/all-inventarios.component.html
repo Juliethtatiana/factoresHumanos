@@ -1,51 +1,58 @@
-<header>
+<div *ngIf="authenticated">
+    <header>
+        
+    </header>
     
- </header>
- 
- <div>
-     
- <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
-     <h2 class="">Lista de Inventarios</h2>
- </div>
- 
- <div class="card shadow p-3 mb-5 bg-white rounded fadeIn">
- <div class=" d-flex justify-content-between">
- 
- 
- <form class="form-inline" asp-page-handler="BuscarInv" method="post">
-     <div class="input-group mb-3">
-         <label for="fechaventas" class="col-form-label mx-2">Fecha: </label>
-         <input type="date" asp-for="FechaInv" class="form-control" placeholder="Fecha a consultar" aria-label="Fecha a consultar" >
-         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-     </div>
- </form>
- </div>
- <table class="tabla table table-hover table-responsive">
- <thead class="theadblue">
-     <tr>
-         <th>Id</th>
-         <th>Nombre</th>
-         <th>Descripcion</th>
-         <th>Fecha Creacion</th>
-         <th>Cantidad de productos</th>
-         <th>Propietario</th>
-     </tr>
- </thead>
- <tbody>
-     <tr *ngFor="let item of listaInventarios">
-         <td>{{item.idinventario}}</td>
-         <td>{{item.nombre}}</td>
-         <td>{{item.descripcion}}</td>
-         <td>{{item.fechaCrecion}}</td>
-         <td>{{item.cantidadProd}}</td>
-         <td>{{item.creador.nombre}}</td>
-         
- 
-     </tr>
- </tbody>
- 
- </table>
- </div>
- 
- </div>
+    <div>
+        
+    <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
+        <h2 class="">Lista de Inventarios</h2>
+    </div>
+    
+    <div class="card shadow p-3 mb-5 bg-white rounded fadeIn">
+    <div class=" d-flex justify-content-between">
+    
+    
+    <form class="form-inline" asp-page-handler="BuscarInv" method="post">
+        <div class="input-group mb-3">
+            <label for="fechaventas" class="col-form-label mx-2">Fecha: </label>
+            <input type="date" asp-for="FechaInv" class="form-control" placeholder="Fecha a consultar" aria-label="Fecha a consultar" >
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </div>
+    </form>
+    </div>
+    <table class="tabla table table-hover table-responsive">
+    <thead class="theadblue">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Fecha Creacion</th>
+            <th>Cantidad de productos</th>
+            <th>Propietario</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of listaInventarios">
+            <td>{{item.idinventario}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.fechaCrecion}}</td>
+            <td>{{item.cantidadProd}}</td>
+            <td>{{item.creador.nombre}}</td>
+            
+    
+        </tr>
+    </tbody>
+    
+    </table>
+    </div>
+    
+    </div>
+</div>
+
+
+ <div *ngIf="!authenticated">
+    <app-not-auth></app-not-auth> 
+</div>
  

@@ -4,7 +4,7 @@ import {InventarioService} from 'src/app/services/inventario.service';
 import { invProdData } from '../types/invProd';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
-
+ 
 @Component({
   selector: 'app-registrar-Devolucion',
   templateUrl: './registrar-Devolucion.component.html',
@@ -16,11 +16,14 @@ export class RegistrarDevolucionComponent implements OnInit {
   invProdForm:FormGroup
   idInventario:any
   userData:any
+  authenticated:boolean
+  user:any
 
   constructor(
     private productoService: ProductoService,
     private inventarioService: InventarioService,
     private formBuilder:FormBuilder){
+      this.authenticated=false;
       this.invProdForm = this.formBuilder.group({
         cantidad_inv: 0,
         cantidad_vend: 0,
@@ -32,11 +35,16 @@ export class RegistrarDevolucionComponent implements OnInit {
     }
     
   ngOnInit(): void {
-    this.idInventario=Number(window.localStorage.getItem("idInventario"))
-    this.userData= window.localStorage.getItem('UserData')
-    this.inventarioService.getProducts(this.idInventario).subscribe((response)=>{
-      this.listaProductos=response
-    })
+    const userData=window.localStorage.getItem("UserData");
+    
+    if(userData){
+      this.authenticated=true
+      this.idInventario=Number(window.localStorage.getItem("idInventario"))
+      this.userData= window.localStorage.getItem('UserData')
+      this.inventarioService.getProducts(this.idInventario).subscribe((response)=>{
+        this.listaProductos=response
+      })
+    }
   }
 
   onSubmit():void{

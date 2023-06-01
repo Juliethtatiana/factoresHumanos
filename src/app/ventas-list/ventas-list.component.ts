@@ -30,17 +30,13 @@ export class VentasListComponent implements OnInit{
     const userData=window.localStorage.getItem("UserData");
     const idInv=window.localStorage.getItem("idInventario");
     if(userData && idInv){
+      this.authenticated=true
       this.ventaService.getSells(Number(idInv)).subscribe((response)=>{
         if(response){
           this.listaVentas=response
-         
         }
       })
-      
-    }
-    
-
-    
+    }    
   }
     
     obtenerDatosFila(event: any) {
