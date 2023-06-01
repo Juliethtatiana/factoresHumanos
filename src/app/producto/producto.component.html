@@ -7,7 +7,7 @@
     <div>
         
     <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
-        <h2 class="">Registrar Producto</h2>
+        <h2 class="" (click)="speak('Registrar Producto')">Registrar Producto</h2>
     </div>
     
     <div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
@@ -17,7 +17,7 @@
 
                 <div class="col">
                     <label>Nombre</label>
-                    <input id="nombreProducto" formControlName="nombreProducto" class="form-control" />
+                    <input id="nombreProducto" formControlName="nombreProducto" class="form-control" (click)="speak('Ingresa el nombre del Producto')" />
                     <span class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-12">
                         <label >Descripcion</label>
-                        <input id="descripcion" formControlName="descripcion" class="form-control" />
+                        <input id="descripcion" formControlName="descripcion" class="form-control" (click)="speak('Ingresa la descripcion del producto')" />
                         <span asp-validation-for="producto.Descripcion" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                     </div>
 
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-12">
                         <label >Precio Unitario</label>
-                        <input id="precioUnitario" formControlName="precioUnitario" class="form-control" type="number" />
+                        <input id="precioUnitario" formControlName="precioUnitario" class="form-control" type="number" (click)="speak('Ingresa el precio unitario del producto')" />
                         <span asp-validation-for="producto.Descripcion" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                     </div>
 
@@ -47,9 +47,9 @@
                 <div class="row">
                     <div class="col">
                         <label >Proveedor</label>
-                        <select class="form-select" aria-label="Default select example" id="proveedorIdProveedor" formControlName="proveedorIdProveedor">
+                        <select class="form-select" aria-label="Default select example" id="proveedorIdProveedor" formControlName="proveedorIdProveedor" (click)="speak('Selecciona el proveedor')">
                             <option value="" disabled selected>Seleccione</option>
-                            <option *ngFor='let proveedor of listaProveedores' value="{{proveedor.idProveedor}}">{{proveedor.nombreProveedor}}</option>
+                            <option *ngFor='let proveedor of listaProveedores' value="{{proveedor.idProveedor}}" (click)="speak(proveedor.nombreProveedor)">{{proveedor.nombreProveedor}}</option>
                         </select>
                     </div>
                 </div>
@@ -58,10 +58,10 @@
             <div class="form-group mt-3">
                 <div class="row">
                     <div class="col-sm-2">
-                        <input type="submit" value="Registrar" class="btn btn-primary form-control" />
+                        <input type="submit" value="Registrar" class="btn btn-primary form-control" (click)="speak('Registrar producto')" />
                     </div>
                     <div class="col-sm-4">
-                    <a type="button" href="/inv" class="btn btn-inv">Volver a la lista</a>              </div>
+                    <a type="button" href="/inv" class="btn btn-inv" (click)="speak('Volver a la lista')">Volver a la lista</a>              </div>
                 </div>
             </div>
 

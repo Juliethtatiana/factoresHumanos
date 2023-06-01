@@ -20,14 +20,14 @@
                         
                       </ul>
                 </li>
-                <li class="nav-item dropdown" *ngIf="!admin">
+                <li class="nav-item dropdown">
                     <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="speak('Opciones venta')">
                         Ventas
                       </button>
                       <ul class="dropdown-menu fadeIn-lessD">
-                        <li><a class="dropdown-item" href="/vent" (click)="speak('Lista de Ventas')">Lista de Ventas</a></li>
-                        <li><a class="dropdown-item" href="/regVent" (click)="speak('Registrar Venta')">Registrar Venta</a></li>
-                        
+                        <li><a class="dropdown-item" href="/vent" (click)="speak('Lista de Ventas')" *ngIf="!admin">Lista de Ventas</a></li>
+                        <li><a class="dropdown-item" href="/regVent" (click)="speak('Registrar Venta')" *ngIf="!admin">Registrar Venta</a></li>
+                        <li><a class="dropdown-item" href="/consecutivo" (click)="speak('Registrar Rango de Consecutivos')"  *ngIf="admin">Registrar Rango Consecutivos</a></li>
                       </ul>
                 </li>
                 <li class="nav-item dropdown" >
