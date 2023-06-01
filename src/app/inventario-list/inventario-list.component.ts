@@ -45,6 +45,7 @@ export class InventarioListComponent implements OnInit {
         this.inventarioService.getInventorybyUser(Number(this.user.idusuario)).subscribe((response)=>{
           console.log(response)
           this.inventarioInfo=response;
+          window.localStorage.setItem("idInventario",this.inventarioInfo.idinventario)
           this.inventarioService.getProducts(Number(this.inventarioInfo.idinventario)).subscribe((response)=>{
             console.log(response)
             this.listaProductos=response;
