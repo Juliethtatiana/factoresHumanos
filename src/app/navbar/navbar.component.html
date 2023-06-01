@@ -30,12 +30,13 @@
                         
                       </ul>
                 </li>
-                <li class="nav-item dropdown" *ngIf="admin">
+                <li class="nav-item dropdown" >
                     <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Producto
                       </button>
                       <ul class="dropdown-menu fadeIn-lessD">
-                        <li><a class="dropdown-item" href="/prod">CrearProd</a></li>
+                        <li><a class="dropdown-item" href="/prod"*ngIf="admin">CrearProd</a></li>
+                        <li><a class="dropdown-item" href="/devoluciones"*ngIf="!admin">Devolver Producto</a></li>
                        
                         
                       </ul>

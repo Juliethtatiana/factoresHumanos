@@ -8,6 +8,8 @@ import { VentasListComponent } from './ventas-list/ventas-list.component';
 import { ProductoComponent} from './producto/producto.component';
 import {NotAuthComponent} from './not-auth/not-auth.component'
 import { AllInventariosComponent} from './all-inventarios/all-inventarios.component'
+import { DetalleComponent } from './detalle/detalle.component';
+import {RegistrarDevolucionComponent} from "./registrar-devolucion/registrar-devolucion.component"
 
 
 const routes: Routes = [ {
@@ -19,8 +21,10 @@ const routes: Routes = [ {
 { path: 'regVent', component: RegistrarVentaComponent },
 { path: 'vent', component: VentasListComponent },
 { path: 'prod', component: ProductoComponent },
+{ path: 'detalle', component: DetalleComponent },
 { path: 'notAuth', component: NotAuthComponent },
-{ path: 'all-inv', component: AllInventariosComponent },];
+{ path: 'all-inv', component: AllInventariosComponent },
+{path: 'devoluciones', component:RegistrarDevolucionComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {ProductoService} from 'src/app/services/producto.service';
+import {ClientService} from 'src/app/services/cliente.service';
+import {VentaService} from 'src/app/services/venta.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {productoData} from 'src/app/types/producto';
 import {InventarioService} from 'src/app/services/inventario.service'
@@ -18,9 +20,14 @@ export class RegistrarVentaComponent implements OnInit{
   totalVenta=0
   datosTabla: any[] = [];
   venta: any[] = [];
+  idCliente:any
+  idInventario:any
+  userData:any
   
   constructor(
     private productoService: ProductoService,
+    private ventaService: VentaService,
+    private clienteService: ClientService,
     private formBuilder:FormBuilder,
     ){
       
@@ -36,6 +43,9 @@ export class RegistrarVentaComponent implements OnInit{
         idVenta:"FE55",
         fecha:"",
         nombreCliente:"",
+        direccionCliente:"",
+        documentoCliente:0,
+        telefonoCliente:0,
         totalVenta:0,
         vendedor:"",
       });
@@ -47,6 +57,9 @@ export class RegistrarVentaComponent implements OnInit{
       this.listaProductos=response
     })
     this.addVenta.value.totalVenta;
+    this.idInventario=Number(window.localStorage.getItem("idInventario"))
+    this.userData= window.localStorage.getItem('UserData')
+
   }
 
   onSubmit(event: any): void {
@@ -77,6 +90,46 @@ export class RegistrarVentaComponent implements OnInit{
       
 
     } else if (botonPresionado === 'registrar') {
+      //creacion de cliente
+      const clientData={
+        nombreCliente:this.addVenta.value.nombreCliente,
+        direccionCliente:this.addVenta.value.direccionCliente,
+        telefonoCliente:Number(this.addVenta.value.telefonoCliente)
+      }
+      this.clienteService.new(clientData).subscribe((response)=>{
+       if(response.statusCode===200){
+          const user= JSON.parse(this.userData)
+          const ventaData={
+            fecha:new Date(),
+            valor:this.totalVenta,
+            clienteIdCliente:response.id,
+            inventarioIdinventario:this.idInventario,
+            vendedorIdusuario:user?Number(user.idusuario):0
+            
+          }
+          this.ventaService.new(ventaData).subscribe((response)=>{
+              if(response.statusCode ===200){
+                let i;
+                for (i = 0; i < this.datosTabla.length; i++) {
+                  console.log(this.datosTabla[i])
+                  const ventaProdData={
+                    cantidad:Number(this.addProdForm.value.cantidad),
+                    productoIdproducto:Number(this.datosTabla[i].productoIdproducto),
+                    ventaIdventa:response.id
+                  }
+                  console.log(ventaProdData)
+                  this.ventaService.addProd(ventaProdData).subscribe((response)=>{
+                    console.log(response)
+                  })
+                }
+                
+              }
+          })
+       }
+      })
+
+
+     
       const nuevaVenta={
         idVenta:this.addVenta.value.idVenta,
         fecha:this.addVenta.value.fecha,

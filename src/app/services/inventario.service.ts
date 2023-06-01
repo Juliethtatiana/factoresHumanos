@@ -21,13 +21,15 @@ export class InventarioService {
   getInventory(idInventario:number):Observable<any>{
     return this.http.get<any>(this.api+ "/"+idInventario)
   }
+  getInventorybyUser(userId:number):Observable<any>{
+    return this.http.get<any>(this.api+ "/user/"+userId)
+  }
 
   getProducts(idInventario:number): Observable<any>{
     return this.http.get<any>(this.apiInvProd+idInventario)
   }
 
   createInvProd(data: invProdData){
-    data.inventarioIdinventario=5
     return this.http.post<any>(this.apiInvProd,data)
   }
 
