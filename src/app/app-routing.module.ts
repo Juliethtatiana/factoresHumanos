@@ -7,6 +7,7 @@ import { RegistrarVentaComponent } from './registrar-venta/registrar-venta.compo
 import { VentasListComponent } from './ventas-list/ventas-list.component';
 import { ProductoComponent} from './producto/producto.component';
 import { AllInventariosComponent} from './all-inventarios/all-inventarios.component'
+import { DetalleComponent } from './detalle/detalle.component';
 
 
 const routes: Routes = [ {
@@ -18,6 +19,7 @@ const routes: Routes = [ {
 { path: 'regVent', component: RegistrarVentaComponent },
 { path: 'vent', component: VentasListComponent },
 { path: 'prod', component: ProductoComponent },
+{ path: 'detalle', component: DetalleComponent },
 { path: 'all-inv', component: AllInventariosComponent },];
 
 @NgModule({
