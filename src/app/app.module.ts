@@ -16,6 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotAuthComponent } from './not-auth/not-auth.component';
 import { AllInventariosComponent } from './all-inventarios/all-inventarios.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import {RegistrarDevolucionComponent} from "./registrar-devolucion/registrar-devolucion.component"
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DetalleComponent } from './detalle/detalle.component';
     NavbarComponent,
     AllInventariosComponent,
     DetalleComponent,
-    NotAuthComponent
+    NotAuthComponent,
+    RegistrarDevolucionComponent
 
   ],
   imports: [
