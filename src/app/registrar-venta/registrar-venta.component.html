@@ -5,7 +5,7 @@
 <div>
     
 <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
-    <h2 class="">Registrar Venta</h2>
+    <h2 class="">Registrar Ventas</h2>
 </div>
 
 <div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
@@ -13,6 +13,16 @@
         <div asp-validation-sumary="ModelOnly">
             <div class="container" style="padding:30px;">
                 <div class="form-group">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label asp-for="venta.idventa">N° Venta</label>
+                                <input asp-for="venta.idventa" class="form-control" />
+                                <span asp-validation-for="venta.Cantidad" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                            </div>
+
+                        </div>
+                    </div>                    
                     <div class="row">
                         <div class="col">
                             <label asp-for="venta.Fecha">Fecha</label>
@@ -20,17 +30,6 @@
                             <span asp-validation-for="venta.Fecha" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                         </div>
 
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                <label asp-for="venta.Cantidad">Cantidad</label>
-                                <input asp-for="venta.Cantidad" class="form-control" />
-                                <span asp-validation-for="venta.Cantidad" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
-                            </div>
-
-                        </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -42,19 +41,11 @@
                             <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                         </div>
                     </div>
-                    <div class="form-group mt-3">
-                        <div class="row">
-                            <div class="col">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="@item.IdProducto">Funda celular</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="form-group mt-3">
                         <div class="row">
                             <div class="col-sm-4">
-                                <input type="submit" value="Registrar" class="btn btn-primary form-control" />
+                                <input type="submit" value="Registrar Venta" class="btn btn-success form-control" />
                             </div>
                             <div class="col-sm-4">
                                 <a type="button" href="/vent" class="btn btn-inv">Volver a la lista</a>  
@@ -66,4 +57,67 @@
         </div>
     </form>
 
+    <form [formGroup]="addProdForm" (ngSubmit)="onSubmit($event)">
+        <div asp-validation-sumary="ModelOnly">
+            <div class="container" style="padding:30px;">
+                <div class="form-group mt-3">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="venta.Producto">Producto</label>
+                            <select id="nameProducto" class="form-select" formControlName="productoIdproducto">
+                                <option *ngFor="let producto of listaProductos" value="{{producto.idproducto}}">{{producto.nombreProducto}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"> 
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="venta.Cantidad">Cantidad</label>
+                            <input id="cant" class="form-control" type="number" formControlName="cantidad" />
+                            <span asp-validation-for="venta.Cantidad" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                        </div>
+        
+                    </div>
+                </div>
+        
+                <div class="form-group mt-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="submit" name="add" value="Agregar Producto" class="btn btn-primary form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </form>
+
+    <table class="tabla table table-hover table-responsive" id="tablaProductos">
+        <thead class="theadblue">
+            <tr>
+                <th>Id</th>
+                <th>Nombre Producto</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of datosTabla"> 
+                <td>{{item.productoIdproducto}}</td>
+                <td>{{item.nameproducto}}</td>
+                <td>{{item.precioUnd}}</td>
+                <td>{{item.cantidad}}</td>
+                <td>{{item.total}}</td>              
+        
+            </tr>
+        </tbody>
+        
+        </table>
+
+        
 </div>
+
+<script>
+
+</script>

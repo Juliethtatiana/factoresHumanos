@@ -15,8 +15,6 @@ export class ProductoComponent implements OnInit {
 
   productForm:FormGroup
 
- 
-
   constructor(
     private proveedorService: ProveedorService,
     private productoService:ProductoService,
