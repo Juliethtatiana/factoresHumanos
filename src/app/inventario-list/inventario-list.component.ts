@@ -13,10 +13,13 @@ export class InventarioListComponent implements OnInit {
   authenticated:boolean
   user:any
   administrator:boolean 
+  speech:any
+
 
   constructor(private inventarioService: InventarioService){
     this.authenticated=false
     this.administrator=false
+    this.speech= new SpeechSynthesisUtterance();
   }
   ngOnInit() {
 
@@ -59,5 +62,13 @@ export class InventarioListComponent implements OnInit {
     }
    
   }
-
+  
+  speak(msg:string){
+    
+    if(localStorage.getItem("speech")=="true"){
+      this.speech.text=msg
+      speechSynthesis.speak(this.speech);
+    }
+  
+   }
 }

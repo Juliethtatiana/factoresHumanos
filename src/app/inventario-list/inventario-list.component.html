@@ -6,8 +6,8 @@
      <div>
          
      <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
-         <h2 class="">Mi Inventario</h2>
-         <a type="button" class="btn btn-inv p-2 "  href="/regInv" >Registrar Producto</a>
+         <h2 (click)="speak('Mi Inventario')">Mi Inventario</h2>
+         <a type="button" class="btn btn-inv p-2 "  href="/regInv" (click)="speak('Registrar Producto')" >Registrar Producto</a>
      </div>
      
      <div class="card shadow p-3 mb-5 bg-white rounded fadeIn">
@@ -18,18 +18,18 @@
              <th>Nombre</th>
              <th>Descripcion</th>
              <th>Precio Unitario</th>
-             <th>Cantidad en stock</th>
-             <th>Cantidad vendida</th>
+             <th >Cantidad en stock</th>
+             <th *ngIf="inventarioInfo.idinventario!=1">Cantidad vendida</th>
          </tr>
      </thead>
      <tbody>
          <tr *ngFor="let item of listaProductos">
              <td>{{item.idInvProd}}</td>
-             <td>{{item.producto.nombreProducto}}</td>
-             <td>{{item.producto.descripcion}}</td>
-             <td>{{item.producto.precioUnitario }}</td>
-             <td>{{item.cantidad_inv}}</td>
-             <td>{{item.cantidad_vend}}</td>
+             <td (click)="speak(item.producto.nombreProducto)">{{item.producto.nombreProducto}}</td>
+             <td (click)="speak(item.producto.descripcion)">{{item.producto.descripcion}}</td>
+             <td (click)="speak('El precio unitario de'+ item.producto.nombreProducto +' es: '+ item.producto.precioUnitario)">{{item.producto.precioUnitario }}</td>
+             <td (click)="speak('La cantidad en stock de'+ item.producto.nombreProducto +' es: '+ item.producto.cantidad_inv)">{{item.cantidad_inv}}</td>
+             <td *ngIf="inventarioInfo.idinventario!=1" (click)="speak('La cantidad vendida de'+ item.producto.nombreProducto +' es: '+ item.cantidad_vend)">{{item.cantidad_vend}}</td>
              
      
          </tr>
@@ -51,7 +51,7 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Precio Unitario</th>
-                    <th>Cantidad en stock</th>
+                    <th>Cantidad Devuelta</th>
                 </tr>
             </thead>
             <tbody>

@@ -1,7 +1,8 @@
 <div *ngIf="authenticated">
     <header>
-        
+        <app-navbar></app-navbar>
     </header>
+
     
     <div>
         
@@ -13,13 +14,7 @@
     <div class=" d-flex justify-content-between">
     
     
-    <form class="form-inline" asp-page-handler="BuscarInv" method="post">
-        <div class="input-group mb-3">
-            <label for="fechaventas" class="col-form-label mx-2">Fecha: </label>
-            <input type="date" asp-for="FechaInv" class="form-control" placeholder="Fecha a consultar" aria-label="Fecha a consultar" >
-            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-        </div>
-    </form>
+   
     </div>
     <table class="tabla table table-hover table-responsive">
     <thead class="theadblue">
@@ -28,7 +23,6 @@
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Fecha Creacion</th>
-            <th>Cantidad de productos</th>
             <th>Propietario</th>
         </tr>
     </thead>
@@ -37,8 +31,7 @@
             <td>{{item.idinventario}}</td>
             <td>{{item.nombre}}</td>
             <td>{{item.descripcion}}</td>
-            <td>{{item.fechaCrecion}}</td>
-            <td>{{item.cantidadProd}}</td>
+            <td>{{item.fechaCreacion | date:'dd/mm/yyyy'}}</td>
             <td>{{item.creador.nombre}}</td>
             
     

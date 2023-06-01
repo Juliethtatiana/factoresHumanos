@@ -10,39 +10,39 @@
         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item dropdown">
-                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="speak('Opciones inventario')">
                         Inventario
                       </button>
                       <ul class="dropdown-menu fadeIn-lessD">
-                        <li><a class="dropdown-item" href="/all-inv" *ngIf="admin">Lista de inventarios</a></li>
-                        <li><a class="dropdown-item" href="/inv">Mi inventario</a></li>
-                        <li><a class="dropdown-item" href="/regInv">Registrar Productos al inv</a></li>
+                        <li><a class="dropdown-item" href="/all-inv" *ngIf="admin" (click)="speak('Lista de inventarios')">Lista de inventarios</a></li>
+                        <li><a class="dropdown-item" href="/inv" (click)="speak('Mi inventario')">Mi inventario</a></li>
+                        <li><a class="dropdown-item" href="/regInv" (click)="speak('Registrar Productos al inv')">Registrar Productos al inv</a></li>
                         
                       </ul>
                 </li>
                 <li class="nav-item dropdown" *ngIf="!admin">
-                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="speak('Opciones venta')">
                         Ventas
                       </button>
                       <ul class="dropdown-menu fadeIn-lessD">
-                        <li><a class="dropdown-item" href="/vent">Lista de Ventas</a></li>
-                        <li><a class="dropdown-item" href="/regVent">Registrar Venta</a></li>
+                        <li><a class="dropdown-item" href="/vent" (click)="speak('Lista de Ventas')">Lista de Ventas</a></li>
+                        <li><a class="dropdown-item" href="/regVent" (click)="speak('Registrar Venta')">Registrar Venta</a></li>
                         
                       </ul>
                 </li>
                 <li class="nav-item dropdown" >
-                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button  class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="speak('Opciones producto')">
                         Producto
                       </button>
                       <ul class="dropdown-menu fadeIn-lessD">
-                        <li><a class="dropdown-item" href="/prod"*ngIf="admin">CrearProd</a></li>
-                        <li><a class="dropdown-item" href="/devoluciones"*ngIf="!admin">Devolver Producto</a></li>
+                        <li><a class="dropdown-item" href="/prod"*ngIf="admin" (click)="speak('Crear Producto')">Crear Producto</a></li>
+                        <li><a class="dropdown-item" href="/devoluciones"*ngIf="!admin" (click)="speak('Devolver Producto')">Devolver Producto</a></li>
                        
                         
                       </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" href="#">Cerrar Sesion</a>
+                    <a class="nav-link text-dark" asp-area="" href="#" (click)="speak('Cerraste sesion')">Cerrar Sesion</a>
                 </li>
             </ul>
         </div>

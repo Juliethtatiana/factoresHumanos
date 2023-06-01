@@ -34,22 +34,23 @@ export class LoginComponent {
         this.loginService.signin(usr).subscribe((response)=>{
           if(response.statusCode === 200){
             window.localStorage.setItem("UserData", JSON.stringify(response.user))
+            this.speak("logueo exitoso");
             this.router.navigate(['/inv']);
           }
         },(error: HttpErrorResponse) => {
           if (error.status === 400) {
             Swal.fire('Error', error.error.message, 'error');
+            this.speak("error, "+error.error.message);
           } else {
             // Handle other errors
             Swal.fire('Error', error.message, 'error');
+            this.speak("error, "+error.error.message);
           }
         })
        
     }
 
-   disableanimations(){
-    
-   }
+
 
 
    speak(msg:string){

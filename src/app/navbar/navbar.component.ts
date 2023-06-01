@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   
   admin:boolean
-  
+  speech:any
   constructor(){
-    this.admin=false
+    this.admin=false,
+    this.speech= new SpeechSynthesisUtterance();
   }
   ngOnInit() {
     const userData= window.localStorage.getItem("UserData")
@@ -23,4 +24,15 @@ export class NavbarComponent implements OnInit {
 
     }
   }
+
+  speak(msg:string){
+    
+    if(localStorage.getItem("speech")=="true"){
+      this.speech.text=msg
+      speechSynthesis.speak(this.speech);
+    }
+  
+   }
+
+ 
 }

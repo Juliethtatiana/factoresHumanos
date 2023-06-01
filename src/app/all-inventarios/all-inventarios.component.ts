@@ -23,7 +23,9 @@ export class AllInventariosComponent implements OnInit{
       this.authenticated=true
       this.inventarioService.list().subscribe((response)=>{
         console.log(response)
-        this.listaInventarios=response;
+        
+        this.listaInventarios=response.slice(2);
+        
       })
     }
     }

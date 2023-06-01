@@ -5,6 +5,9 @@ import {VentaService} from 'src/app/services/venta.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {productoData} from 'src/app/types/producto';
 import {InventarioService} from 'src/app/services/inventario.service'
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-registrar-venta',
@@ -28,7 +31,7 @@ export class RegistrarVentaComponent implements OnInit{
   user:any
   administrator:boolean
   
-  constructor(
+  constructor(private router: Router,
     private inventarioService: InventarioService,
     private ventaService: VentaService,
     private clienteService: ClientService,
@@ -81,24 +84,33 @@ export class RegistrarVentaComponent implements OnInit{
       const producto = this.listaProductos;
 
       console.log(producto)
-      let i;
+      var i:number;
       for (i = 0; i < producto.length; i++) {
         if((parseInt(producto[i].productoIdproducto))==(parseInt(this.addProdForm.value.productoIdproducto))){
           break;
         }
       }
-      console.log(producto);
+      this.inventarioService.getInvProd(this.idInventario, this.addProdForm.value.productoIdproducto).subscribe((response)=>{
+        if(response){
+          if(this.addProdForm.value.cantidad <= response.cantidad_inv){
+            const nuevaFila = {
+              productoIdproducto: this.addProdForm.value.productoIdproducto,
+              nameproducto:producto[i].producto.nombreProducto,
+              precioUnd:producto[i].producto.precioUnitario,
+              cantidad:this.addProdForm.value.cantidad,
+              total:parseInt(this.addProdForm.value.cantidad)*parseInt(producto[i].producto.precioUnitario)
+            };  
       
-      const nuevaFila = {
-        productoIdproducto: this.addProdForm.value.productoIdproducto,
-        nameproducto:producto[i].producto.nombreProducto,
-        precioUnd:producto[i].producto.precioUnitario,
-        cantidad:this.addProdForm.value.cantidad,
-        total:parseInt(this.addProdForm.value.cantidad)*parseInt(producto[i].producto.precioUnitario)
-      };
-      this.datosTabla.push(nuevaFila);
-      this.totalVenta=this.totalVenta+nuevaFila.total;
-      this.addVenta.value.totalVenta=this.totalVenta;
+            this.datosTabla.push(nuevaFila);
+            this.totalVenta=this.totalVenta+nuevaFila.total;
+            this.addVenta.value.totalVenta=this.totalVenta;
+          }else{
+            Swal.fire('Error',"la cantidad ingresada es menor a la del inventario", 'error');
+          }
+        }
+      })
+      
+      
       
 
     } else if (botonPresionado === 'registrar') {
@@ -108,17 +120,21 @@ export class RegistrarVentaComponent implements OnInit{
         direccionCliente:this.addVenta.value.direccionCliente,
         telefonoCliente:Number(this.addVenta.value.telefonoCliente)
       }
+
       this.clienteService.new(clientData).subscribe((response)=>{
        if(response.statusCode===200){
-          const user= JSON.parse(this.userData)
+        console.log(this.userData)
+          
+          
           const ventaData={
             fecha:new Date(),
             valor:this.totalVenta,
             clienteIdCliente:response.id,
             inventarioIdinventario:this.idInventario,
-            vendedorIdusuario:user?Number(user.idusuario):0
+            vendedorIdusuario:this.user?Number(this.user.idusuario):0
             
           }
+          
           this.ventaService.new(ventaData).subscribe((response)=>{
               if(response.statusCode ===200){
                 let i:number;
@@ -132,16 +148,20 @@ export class RegistrarVentaComponent implements OnInit{
                   console.log(ventaProdData.productoIdproducto)
                   this.ventaService.addProd(ventaProdData).subscribe((response)=>{
                     if(response.statusCode===200){
-                      console.log("holi")
+                      
                       this.inventarioService.getInvProd(this.idInventario,Number(ventaProdData.productoIdproducto)).subscribe((response)=>{
                         if(response){
                           const update={
-                            cantidad_vend: Number(ventaProdData.cantidad)
+                            cantidad_vend: Number(ventaProdData.cantidad),
+                            cantidad_inv: response.cantidad_inv-Number(ventaProdData.cantidad)
                           }
+                          console.log(update)
                           this.inventarioService.updateCantVend(response.idInvProd, update).subscribe((response)=>{
                             console.log(response)
                             if(response){
                               this.invProd=response.idInvProd
+                              Swal.fire('Listo',"venta Registrada Exitosamente", 'success');
+                              this.router.navigate(['/inv']);
                             }
                           })
                         }
