@@ -10,11 +10,12 @@ import {NotAuthComponent} from './not-auth/not-auth.component'
 import { AllInventariosComponent} from './all-inventarios/all-inventarios.component'
 import { DetalleComponent } from './detalle/detalle.component';
 import {RegistrarDevolucionComponent} from "./registrar-devolucion/registrar-devolucion.component"
+import {ConsecutivoComponent} from "./Consecutivo/consecutivo.component"
 
 
 const routes: Routes = [ {
   path: "",
-  component: LoginComponent
+  component: LoginComponent 
 },
 { path: 'inv', component: InventarioListComponent },
 { path: 'regInv', component: RegistrarInventarioComponent },
@@ -24,7 +25,9 @@ const routes: Routes = [ {
 { path: 'detalle/:id', component: DetalleComponent },
 { path: 'notAuth', component: NotAuthComponent },
 { path: 'all-inv', component: AllInventariosComponent },
-{path: 'devoluciones', component:RegistrarDevolucionComponent}];
+{path: 'devoluciones', component:RegistrarDevolucionComponent},
+{path: 'consecutivo', component:ConsecutivoComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

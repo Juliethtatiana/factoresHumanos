@@ -35,7 +35,7 @@ export class VentasListComponent implements OnInit{
         if(response){
           this.listaVentas=response
         }
-      })
+      }) 
     }    
   }
     
