@@ -36,7 +36,7 @@ export class InventarioListComponent implements OnInit {
           console.log(response)
           this.listaProductos=response;
         })
-        this.inventarioService.getProducts(1).subscribe((response)=>{
+        this.inventarioService.getProducts(2).subscribe((response)=>{
           console.log(response)
           this.listaDevoluciones=response;
         })

@@ -23,6 +23,7 @@ export class RegistrarVentaComponent implements OnInit{
   idCliente:any
   idInventario:any
   userData:any
+  invProd:any
   
   constructor(
     private inventarioService: InventarioService,
@@ -111,7 +112,7 @@ export class RegistrarVentaComponent implements OnInit{
           }
           this.ventaService.new(ventaData).subscribe((response)=>{
               if(response.statusCode ===200){
-                let i;
+                let i:number;
                 for (i = 0; i < this.datosTabla.length; i++) {
                   console.log(this.datosTabla[i])
                   const ventaProdData={
@@ -119,9 +120,26 @@ export class RegistrarVentaComponent implements OnInit{
                     productoIdproducto:Number(this.datosTabla[i].productoIdproducto),
                     ventaIdventa:response.id
                   }
-                  console.log(ventaProdData)
+                  console.log(ventaProdData.productoIdproducto)
                   this.ventaService.addProd(ventaProdData).subscribe((response)=>{
-                    console.log(response)
+                    if(response.statusCode===200){
+                      console.log("holi")
+                      this.inventarioService.getInvProd(this.idInventario,Number(ventaProdData.productoIdproducto)).subscribe((response)=>{
+                        if(response){
+                          const update={
+                            cantidad_vend: Number(ventaProdData.cantidad)
+                          }
+                          this.inventarioService.updateCantVend(response.idInvProd, update).subscribe((response)=>{
+                            console.log(response)
+                            if(response){
+                              this.invProd=response.idInvProd
+                            }
+                          })
+                        }
+
+                      })
+                      
+                    }
                   })
                 }
                 

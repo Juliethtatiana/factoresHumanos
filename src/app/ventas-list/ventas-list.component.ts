@@ -58,12 +58,7 @@ export class VentasListComponent implements OnInit{
     this.fecha = fila.cells[2].innerText;
     this.total = fila.cells[3].innerText;
   
-    /* Hacer algo con los datos obtenidos, como mostrarlos en la consola
-    console.log('Datos de la fila seleccionada:');
-    console.log('idVenta:', this.idVenta);
-    console.log('Nombre Cliente:', this.nombreCliente);
-    console.log('Fecha:', this.fecha);
-    console.log('Total ($):', this.total);*/
+   
   }
 
   abrirOperacion() {

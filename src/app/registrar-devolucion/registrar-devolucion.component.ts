@@ -14,6 +14,8 @@ export class RegistrarDevolucionComponent implements OnInit {
 
   listaProductos:any
   invProdForm:FormGroup
+  idInventario:any
+  userData:any
 
   constructor(
     private productoService: ProductoService,
@@ -30,7 +32,9 @@ export class RegistrarDevolucionComponent implements OnInit {
     }
     
   ngOnInit(): void {
-    this.productoService.list().subscribe((response)=>{
+    this.idInventario=Number(window.localStorage.getItem("idInventario"))
+    this.userData= window.localStorage.getItem('UserData')
+    this.inventarioService.getProducts(this.idInventario).subscribe((response)=>{
       this.listaProductos=response
     })
   }

@@ -34,8 +34,8 @@
                     <div class="row">
                         <div class="col">
                             <label asp-for="venta.Fecha">Producto</label>
-                            <select class="form-select" formControlName="productoIdproducto">
-                                <option *ngFor="let producto of listaProductos" value="{{producto.idproducto}}">{{producto.nombreProducto}}</option>
+                            <select id="nameProducto" class="form-select" formControlName="productoIdproducto">
+                                <option *ngFor="let item of listaProductos" value="{{item.producto.idproducto}}">{{item.producto.nombreProducto}}</option>
                             </select>
                         </div>
                     </div>

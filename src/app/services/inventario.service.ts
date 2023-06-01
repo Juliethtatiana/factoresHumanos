@@ -3,9 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { invProdData } from '../types/invProd';
 
+export type updateinv={
+  cantidad_vend?:number,
+  cantidad_inv?:number
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class InventarioService {
 
   readonly api="http://localhost:3000/inventario"
@@ -31,6 +38,14 @@ export class InventarioService {
 
   createInvProd(data: invProdData){
     return this.http.post<any>(this.apiInvProd,data)
+  }
+
+  updateCantVend(id:number, data:updateinv){
+    return this.http.patch<any>(this.apiInvProd  + id, data)
+  }
+
+  getInvProd(idInv:number, idProd:number){
+    return this.http.get<any>(this.apiInvProd+ "register/" +idInv + "/"+ idProd)
   }
 
  
