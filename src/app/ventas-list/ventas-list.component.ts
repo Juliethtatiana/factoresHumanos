@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { VentaService } from '../services/venta.service';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +20,8 @@ export class VentasListComponent implements OnInit{
   listaVentas:any
 
   constructor(
-    private ventaService: VentaService 
+    private ventaService: VentaService ,
+    private router: Router,
   ){
     this.authenticated=false
   }
@@ -67,7 +68,7 @@ export class VentasListComponent implements OnInit{
 
   abrirOperacion() {
     // Llamar a la ventana detalle de venta
-    console.log('Operación de abrir ejecutada');
+    this.router.navigate(['/detalle/'+ this.idVenta]);
   }
    
 }

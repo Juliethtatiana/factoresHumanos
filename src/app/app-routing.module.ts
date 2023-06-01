@@ -21,7 +21,7 @@ const routes: Routes = [ {
 { path: 'regVent', component: RegistrarVentaComponent },
 { path: 'vent', component: VentasListComponent },
 { path: 'prod', component: ProductoComponent },
-{ path: 'detalle', component: DetalleComponent },
+{ path: 'detalle/:id', component: DetalleComponent },
 { path: 'notAuth', component: NotAuthComponent },
 { path: 'all-inv', component: AllInventariosComponent },
 {path: 'devoluciones', component:RegistrarDevolucionComponent}];

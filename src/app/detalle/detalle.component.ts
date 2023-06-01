@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {ProductoService} from 'src/app/services/producto.service';
+import { VentaService} from 'src/app/services/venta.service'
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-detalle',
@@ -15,22 +18,29 @@ export class DetalleComponent implements OnInit {
   costoTotal: number | undefined;
   factura: number | undefined;
   listaProductos: any
-  invProdForm: FormGroup;
+  idVenta:number
+  ventaInfo:any
 
   constructor(
       private productoService: ProductoService,
-      private formBuilder:FormBuilder){
-      this.invProdForm = this.formBuilder.group({
-        updated:"",
-        inventarioIdinventario:0,
-        productoIdproducto:0
-      });
+      private ventaService: VentaService,
+      private route: ActivatedRoute,
+      ){
+     this.idVenta= this.route.snapshot.params['id'];
 
   }
     
   ngOnInit(): void {
-      this.productoService.list().subscribe((response)=>{
-      this.listaProductos=response})
+     this.ventaService.getInfo(Number(this.idVenta)).subscribe((response)=>{
+        if(response){
+          this.ventaInfo=response
+          this.ventaService.getProd(this.ventaInfo.idventa).subscribe((response)=>{
+            this.listaProductos=response
+            console.log(this.listaProductos)
+          })
+        }
+     })
+      
       this.nombreCliente = "john"
       this.factura = 1
       this.fechaHoy = new Date().toISOString().split('T')[0];

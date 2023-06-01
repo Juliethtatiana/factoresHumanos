@@ -31,11 +31,17 @@ export class VentaService {
   new(venta:venta):Observable<any>{
     return this.http.post<any>(this.api , venta);
   }
+  getInfo(id:number):Observable<any>{
+    return this.http.get<any>(this.api +"/"+ id);
+  }
   addProd(ventaprod:ventaprod):Observable<any>{
     return this.http.post<any>(this.api2 , ventaprod);
   }
   getSells(idInventory:number):Observable<any>{
     return this.http.get<any>(this.api +"/all/"+idInventory);
+  }
+  getProd(idVenta:number):Observable<any>{
+    return this.http.get<any>(this.api2+ "/" + idVenta)
   }
 
 }

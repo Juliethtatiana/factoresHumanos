@@ -11,14 +11,14 @@
 <div class="card shadow p-3 mb-5 bg-white rounded fadeIn " >
         <div asp-validation-sumary="ModelOnly">
             <div class="container" style="padding:30px;">
-                <div class="form-group">
+                <div class="form-group" *ngIf="ventaInfo">
                     <div class="row">
                         <div class="col">
-                            <h4 class="">Nombre del cliente: {{ nombreCliente }}</h4>
+                            <h4 class="">Nombre del cliente: {{ ventaInfo.cliente.nombreCliente }}</h4>
                             
                         </div>
                         <div class="col">
-                            <h4 class="">N° Factura:  {{ factura }}</h4>
+                            <h4 class="">N° Factura:  {{ ventaInfo.idventa }}</h4>
                             
                         </div>
                     </div>
@@ -26,13 +26,13 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                            <h4 class="">Total: {{ costoTotal }}</h4>
+                            <h4 class="">Total: {{ ventaInfo.valor }}</h4>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <h4 class="">Fecha: {{ fechaHoy }}</h4>                                
+                                <h4 class="">Fecha: {{ ventaInfo.fecha | date:'dd/mm/yyyy' }}</h4>                                
                             </div>
                             <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                         </div>
@@ -42,19 +42,19 @@
                             <thead class="theadblue">
                                 <tr>
                                     <th>#</th>
-                                    <th>Cantidad</th>
                                     <th>Producto</th>
+                                    <th>Cantidad</th>
                                     <th>Precio</th>
                                     <th>Precio Total ($)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>123</td>
-                                    <td>2</td>
-                                    <td>Fundas para celular Xioami mi A2</td>
-                                    <td>$ 12000</td>
-                                    <td>$ 24000</td>
+                                <tr *ngFor="let item of listaProductos">
+                                    <td>{{item.productoIdproducto}}</td>
+                                    <td>{{item.producto.nombreProducto}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>$ {{item.producto.precioUnitario}}</td>
+                                    <td>$ {{item.producto.precioUnitario*item.cantidad}}</td>
                                 </tr>
                             </tbody>
                         </table>
