@@ -15,6 +15,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotAuthComponent } from './not-auth/not-auth.component';
 import { AllInventariosComponent } from './all-inventarios/all-inventarios.component';
+import { DetalleComponent } from './detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { AllInventariosComponent } from './all-inventarios/all-inventarios.compo
     VentasListComponent,
     ProductoComponent,
     NavbarComponent,
+    AllInventariosComponent,
+    DetalleComponent,
     NotAuthComponent
 
   ],
