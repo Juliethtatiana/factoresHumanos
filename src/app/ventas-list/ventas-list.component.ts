@@ -1,4 +1,6 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { VentaService } from '../services/venta.service';
+
 
 
 @Component({
@@ -7,11 +9,38 @@ import { Component} from '@angular/core';
   styleUrls: ['./ventas-list.component.css']
 })
 
-export class VentasListComponent{
+export class VentasListComponent implements OnInit{
+
   idVenta=0
   nombreCliente=""
   fecha=""
   total=0
+  authenticated:boolean
+  user:any
+  listaVentas:any
+
+  constructor(
+    private ventaService: VentaService 
+  ){
+    this.authenticated=false
+  }
+
+  ngOnInit(): void {
+    const userData=window.localStorage.getItem("UserData");
+    const idInv=window.localStorage.getItem("idInventario");
+    if(userData && idInv){
+      this.ventaService.getSells(Number(idInv)).subscribe((response)=>{
+        if(response){
+          this.listaVentas=response
+         
+        }
+      })
+      
+    }
+    
+
+    
+  }
     
     obtenerDatosFila(event: any) {
     const fila = event.target.parentNode;

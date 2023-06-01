@@ -34,4 +34,8 @@ export class VentaService {
   addProd(ventaprod:ventaprod):Observable<any>{
     return this.http.post<any>(this.api2 , ventaprod);
   }
+  getSells(idInventory:number):Observable<any>{
+    return this.http.get<any>(this.api +"/all/"+idInventory);
+  }
+
 }

@@ -14,13 +14,7 @@
     <div class=" d-flex justify-content-between">
     
     
-    <form class="form-inline" asp-page-handler="BuscarInv" method="post">
-        <div class="input-group mb-3">
-            <label for="fechaventas" class="col-form-label mx-2">Fecha: </label>
-            <input type="date" asp-for="FechaInv" class="form-control" placeholder="Fecha a consultar" aria-label="Fecha a consultar" >
-            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-        </div>
-    </form>
+
     </div>
     <div class=" d-flex justify-content-between">
         <div class="row">
@@ -39,30 +33,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr (click)="obtenerDatosFila($event)">
-            <td>123</td>
-            <td>Juanito alcachofa</td>
-            <td>02/03/2023</td>
-            <td>$ 24000</td>
+        <tr *ngFor="let item of listaVentas" (click)="obtenerDatosFila($event)">
+            <td>{{item.idventa}}</td>
+            <td>{{item.cliente.nombreCliente}}</td>
+            <td>{{item.fecha}}</td>
+            <td>$ {{item.valor}}</td>
         </tr>
-        <tr (click)="obtenerDatosFila($event)">
-            <td>123</td>
-            <td>Juanito alcachofa</td>
-            <td>02/03/2023</td>
-            <td>$ 24000</td>
-        </tr>
-        <tr (click)="obtenerDatosFila($event)">
-            <td>123</td>
-            <td>Juanito alcachofa</td>
-            <td>02/03/2023</td>
-            <td>$ 24000</td>
-        </tr>
-        <tr (click)="obtenerDatosFila($event)">
-            <td>123</td>
-            <td>Juanito alcachofa</td>
-            <td>02/03/2023</td>
-            <td>$ 24000</td>
-        </tr>
+       
        
     </tbody>
     

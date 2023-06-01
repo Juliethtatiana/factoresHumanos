@@ -25,7 +25,7 @@ export class RegistrarVentaComponent implements OnInit{
   userData:any
   
   constructor(
-    private productoService: ProductoService,
+    private inventarioService: InventarioService,
     private ventaService: VentaService,
     private clienteService: ClientService,
     private formBuilder:FormBuilder,
@@ -53,13 +53,13 @@ export class RegistrarVentaComponent implements OnInit{
     }
 
   ngOnInit(): void {
-    this.productoService.list().subscribe((response)=>{
-      this.listaProductos=response
-    })
     this.addVenta.value.totalVenta;
     this.idInventario=Number(window.localStorage.getItem("idInventario"))
     this.userData= window.localStorage.getItem('UserData')
-
+    this.inventarioService.getProducts(this.idInventario).subscribe((response)=>{
+      this.listaProductos=response
+    })
+    
   }
 
   onSubmit(event: any): void {
@@ -69,9 +69,11 @@ export class RegistrarVentaComponent implements OnInit{
     
     if (botonPresionado === 'add') {            
       const producto = this.listaProductos;
+
+      console.log(producto)
       let i;
       for (i = 0; i < producto.length; i++) {
-        if((parseInt(producto[i].idproducto))==(parseInt(this.addProdForm.value.productoIdproducto))){
+        if((parseInt(producto[i].productoIdproducto))==(parseInt(this.addProdForm.value.productoIdproducto))){
           break;
         }
       }
@@ -79,10 +81,10 @@ export class RegistrarVentaComponent implements OnInit{
       
       const nuevaFila = {
         productoIdproducto: this.addProdForm.value.productoIdproducto,
-        nameproducto:producto[i].nombreProducto,
-        precioUnd:producto[i].precioUnitario,
+        nameproducto:producto[i].producto.nombreProducto,
+        precioUnd:producto[i].producto.precioUnitario,
         cantidad:this.addProdForm.value.cantidad,
-        total:parseInt(this.addProdForm.value.cantidad)*parseInt(producto[i].precioUnitario)
+        total:parseInt(this.addProdForm.value.cantidad)*parseInt(producto[i].producto.precioUnitario)
       };
       this.datosTabla.push(nuevaFila);
       this.totalVenta=this.totalVenta+nuevaFila.total;
@@ -113,7 +115,7 @@ export class RegistrarVentaComponent implements OnInit{
                 for (i = 0; i < this.datosTabla.length; i++) {
                   console.log(this.datosTabla[i])
                   const ventaProdData={
-                    cantidad:Number(this.addProdForm.value.cantidad),
+                    cantidad:Number(this.datosTabla[i].cantidad),
                     productoIdproducto:Number(this.datosTabla[i].productoIdproducto),
                     ventaIdventa:response.id
                   }

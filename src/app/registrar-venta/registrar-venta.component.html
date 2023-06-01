@@ -80,7 +80,7 @@
                         <div class="col">
                             <label asp-for="venta.Producto">Producto</label>
                             <select id="nameProducto" class="form-select" formControlName="productoIdproducto">
-                                <option *ngFor="let producto of listaProductos" value="{{producto.idproducto}}">{{producto.nombreProducto}}</option>
+                                <option *ngFor="let item of listaProductos" value="{{item.producto.idproducto}}">{{item.producto.nombreProducto}}</option>
                             </select>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
             </tr>
         </tbody>
         </table>
-    <div *ngIf="datosTabla.length == 0" style="padding:30px;">
+    <div *ngIf='datosTabla.length == 0' style="padding:30px;">
         <h5>Agrega un producto :D</h5>
     </div>
 
