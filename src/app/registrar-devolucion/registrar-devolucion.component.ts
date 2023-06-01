@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductoService} from 'src/app/services/producto.service';
-import {InventarioService} from 'src/app/services/inventario.service'
+import {InventarioService} from 'src/app/services/inventario.service';
 import { invProdData } from '../types/invProd';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -20,12 +20,12 @@ export class RegistrarDevolucionComponent implements OnInit {
     private inventarioService: InventarioService,
     private formBuilder:FormBuilder){
       this.invProdForm = this.formBuilder.group({
-        cantidad_inv:0,
-        cantidad_vend:0,
-        updated:"",
-        inventarioIdinventario:0,
+        cantidad_inv: 0,
+        cantidad_vend: 0,
+        updated: new Date(),
+        inventarioIdinventario:5,
         productoIdproducto:0
-      });
+     });
 
     }
     

@@ -9,10 +9,14 @@ import {InventarioService} from 'src/app/services/inventario.service'
 export class InventarioListComponent implements OnInit {
   inventarioInfo:any
   listaProductos:any
+  listaDevoluciones:any
   authenticated:boolean
+  user:any
+  administrator:boolean
 
   constructor(private inventarioService: InventarioService){
     this.authenticated=false
+    this.administrator=false
   }
   ngOnInit() {
 
@@ -20,15 +24,37 @@ export class InventarioListComponent implements OnInit {
     const userData=window.localStorage.getItem("UserData");
     if(userData){
       this.authenticated=true
+      this.user=JSON.parse(userData)
+    
+      if(this.user.role=="ADMIN"){
+        this.administrator=true
+        this.inventarioService.getInventory(1).subscribe((response)=>{
+          console.log(response)
+          this.inventarioInfo=response;
+        })
+        this.inventarioService.getProducts(1).subscribe((response)=>{
+          console.log(response)
+          this.listaProductos=response;
+        })
+        this.inventarioService.getProducts(1).subscribe((response)=>{
+          console.log(response)
+          this.listaDevoluciones=response;
+        })
+      }else{
 
-      this.inventarioService.getInventory(5).subscribe((response)=>{
-        console.log(response)
-        this.inventarioInfo=response;
-      })
-      this.inventarioService.getProducts(5).subscribe((response)=>{
-        console.log(response)
-        this.listaProductos=response;
-      })
+        this.inventarioService.getInventorybyUser(Number(this.user.idusuario)).subscribe((response)=>{
+          console.log(response)
+          this.inventarioInfo=response;
+          this.inventarioService.getProducts(Number(this.inventarioInfo.idinventario)).subscribe((response)=>{
+            console.log(response)
+            this.listaProductos=response;
+          })
+        })
+        
+
+      }
+
+      
     }else{
 
     }
