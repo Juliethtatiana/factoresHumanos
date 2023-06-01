@@ -17,6 +17,7 @@ import { NotAuthComponent } from './not-auth/not-auth.component';
 import { AllInventariosComponent } from './all-inventarios/all-inventarios.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import {RegistrarDevolucionComponent} from "./registrar-devolucion/registrar-devolucion.component"
+import {ConsecutivoComponent} from "./Consecutivo/consecutivo.component"
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {RegistrarDevolucionComponent} from "./registrar-devolucion/registrar-dev
     AllInventariosComponent,
     DetalleComponent,
     NotAuthComponent,
-    RegistrarDevolucionComponent
+    RegistrarDevolucionComponent,
+    ConsecutivoComponent
 
   ],
   imports: [
