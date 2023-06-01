@@ -2,7 +2,7 @@
     <header>
         <app-navbar></app-navbar>
     </header>
-    
+     
     <div>
         
     <div class="d-flex justify-content-between m-5 mb-0 fadeIn">
@@ -11,7 +11,7 @@
     
     <div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
         
-        <form [formGroup]="invProdForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="invProdForm" (ngSubmit)="onSubmit()"> 
     
             <div class="form-group mt-3">
                 <div class="row">
@@ -52,8 +52,8 @@
     
     </div>
 </div>
-
 </div>
+
 <div *ngIf="!authenticated">
-    <p>no estas autenticado</p>
+    <app-not-auth></app-not-auth> 
 </div>

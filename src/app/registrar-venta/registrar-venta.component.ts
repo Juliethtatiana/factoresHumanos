@@ -21,9 +21,12 @@ export class RegistrarVentaComponent implements OnInit{
   datosTabla: any[] = [];
   venta: any[] = [];
   idCliente:any
-  idInventario:any
-  userData:any
+  idInventario:any 
   invProd:any
+  userData:any
+  authenticated:boolean
+  user:any
+  administrator:boolean
   
   constructor(
     private inventarioService: InventarioService,
@@ -31,7 +34,8 @@ export class RegistrarVentaComponent implements OnInit{
     private clienteService: ClientService,
     private formBuilder:FormBuilder,
     ){
-      
+      this.authenticated=false
+      this.administrator=false
       this.addProdForm = this.formBuilder.group({
         productoIdproducto:0,
         nameproducto:"",
@@ -54,13 +58,18 @@ export class RegistrarVentaComponent implements OnInit{
     }
 
   ngOnInit(): void {
-    this.addVenta.value.totalVenta;
-    this.idInventario=Number(window.localStorage.getItem("idInventario"))
-    this.userData= window.localStorage.getItem('UserData')
-    this.inventarioService.getProducts(this.idInventario).subscribe((response)=>{
-      this.listaProductos=response
-    })
-    
+    const userData=window.localStorage.getItem("UserData");
+    if(userData){
+      this.authenticated=true
+      this.user=JSON.parse(userData)
+      this.addVenta.value.totalVenta;
+      this.idInventario=Number(window.localStorage.getItem("idInventario"))
+      this.inventarioService.getProducts(this.idInventario).subscribe((response)=>{
+        this.listaProductos=response
+      })
+    }else{
+      this.authenticated=false
+    }
   }
 
   onSubmit(event: any): void {
