@@ -11,14 +11,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registrar-inventario.component.css']
 })
 export class RegistrarInventarioComponent implements OnInit {
-
+  inventarioInfo:any
   listaProductos:any
   invProdForm:FormGroup
+  authenticated:boolean
+  user:any
+  administrator:boolean
 
   constructor(
     private productoService: ProductoService,
     private inventarioService: InventarioService,
     private formBuilder:FormBuilder){
+      this.authenticated=false
+    this.administrator=false
       this.invProdForm = this.formBuilder.group({
         cantidad_inv:0,
         cantidad_vend:0,
@@ -30,20 +35,30 @@ export class RegistrarInventarioComponent implements OnInit {
     }
     
   ngOnInit(): void {
+    const userData=window.localStorage.getItem("UserData");
+    if(userData){
+      this.authenticated=true
+      this.user=JSON.parse(userData)
     this.productoService.list().subscribe((response)=>{
       this.listaProductos=response
     })
+    this.inventarioService.getInventorybyUser(Number(this.user.idusuario)).subscribe((response)=>{
+      console.log(response)
+      this.inventarioInfo=response;
+    })
+  }
   }
 
   onSubmit():void{
+    
     const producto = {
       cantidad_inv: this.invProdForm.value.cantidad_inv,
       cantidad_vend: 0,
       updated: new Date(),
-      inventarioIdinventario:5,
+      inventarioIdinventario:this.inventarioInfo? this.inventarioInfo.idinventario:0  ,
       productoIdproducto:Number(this.invProdForm.value.productoIdproducto)
     };
-   
+    console.log(producto)
     this.inventarioService.createInvProd(producto).subscribe((response)=>{
       console.log(response)
   
