@@ -9,7 +9,7 @@
 </div>
 
 <div class="card shadow p-3 mb-5 bg-white rounded fadeIn ">
-    <form method="post">
+    <form [formGroup]="addVenta" (ngSubmit)="onSubmit($event)">
         <div asp-validation-sumary="ModelOnly">
             <div class="container" style="padding:30px;">
                 <div class="form-group">
@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col">
                                 <label asp-for="venta.idventa">N° Venta</label>
-                                <input asp-for="venta.idventa" class="form-control" />
+                                <input class="form-control" formControlName="idVenta" readonly/>
                                 <span asp-validation-for="venta.Cantidad" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                             </div>
 
@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col">
                             <label asp-for="venta.Fecha">Fecha</label>
-                            <input asp-for="venta.Fecha" type="date" class="form-control" />
+                            <input type="date" class="form-control" formControlName="fecha" />
                             <span asp-validation-for="venta.Fecha" class="text-danger"></span>    <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
                         </div>
 
@@ -35,17 +35,23 @@
                         <div class="row">
                             <div class="col">
                                 <label asp-for="venta.NombreCliente">Nombre cliente</label>
-                                <input asp-for="venta.NombreCliente" class="form-control" />
+                                <input  class="form-control" formControlName="nombreCliente" />
                                 <span asp-validation-for="venta.NombreCliente" class="text-danger"></span>
                             </div>
                             <!--Texto de aviso en caso de que el campo no cumpla los requerimentos-->
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label asp-for="venta.lbltotalVenta">Total Venta: {{totalVenta}} </label>
+                            </div>
+                             
                         </div>
                     </div>
                     
                     <div class="form-group mt-3">
                         <div class="row">
                             <div class="col-sm-4">
-                                <input type="submit" value="Registrar Venta" class="btn btn-success form-control" />
+                                <input type="submit" name="registrar" value="Registrar Venta" class="btn btn-success form-control" />
                             </div>
                             <div class="col-sm-4">
                                 <a type="button" href="/vent" class="btn btn-inv">Volver a la lista</a>  
@@ -109,13 +115,10 @@
                 <td>{{item.precioUnd}}</td>
                 <td>{{item.cantidad}}</td>
                 <td>{{item.total}}</td>              
-        
             </tr>
         </tbody>
-        
         </table>
-
-        
+ 
 </div>
 
 <script>
